@@ -2,32 +2,40 @@ package main
 
 import (
 	"bastudio/algorithms/bfs"
-	"bastudio/algorithms/dfs"
 	"bastudio/algorithms/datastructures/binarytree"
+	"bastudio/algorithms/dfs"
+	"bastudio/algorithms/rot2d"
 	"fmt"
-	"os"
 	"math/rand"
+	"os"
 	"time"
 )
 
-func main () {
+func main() {
 	rand.Seed(time.Now().UnixNano())
 	switch os.Args[2] {
-		case "bfs": {
+	case "bfs":
+		{
 			doBFS()
 			break
 		}
-		case "dfs": {
+	case "dfs":
+		{
 			doDFS()
+			break
+		}
+	case "rot2d":
+		{
+			doRot2D()
 			break
 		}
 	}
 }
 
-func doBFS () {
+func doBFS() {
 	fmt.Println("Running BFS.")
 	root := binarytree.GetRandomTree(22, false)
-	bfs.BFS(root, func (r *binarytree.TreeNode) bool {
+	bfs.BFS(root, func(r *binarytree.TreeNode) bool {
 		fmt.Println(r.Val)
 		if r.Val == 16 {
 			return true
@@ -37,10 +45,10 @@ func doBFS () {
 	})
 }
 
-func doDFS () {
+func doDFS() {
 	fmt.Println("Running DFS.")
 	root := binarytree.GetRandomTree(22, false)
-	dfs.DFS(root, func (r *binarytree.TreeNode) bool {
+	dfs.DFS(root, func(r *binarytree.TreeNode) bool {
 		fmt.Println(r.Val)
 		if r.Val == 11 {
 			return true
@@ -48,5 +56,24 @@ func doDFS () {
 			return false
 		}
 	})
-	
+}
+
+func doRot2D () {
+	fmt.Println("Running Rot2D")
+	test := [][]int {
+		{ 0, 1, 2, 3 },
+		{ 4, 5, 6, 7 },
+		{ 8, 9, 10, 11},
+		{ 12, 13, 14, 15},
+	}
+	fmt.Printf("\n%v", test[0])
+	fmt.Printf("\n%v", test[1])
+	fmt.Printf("\n%v", test[2])
+	fmt.Printf("\n%v", test[3])
+	fmt.Printf("\n")
+	rot2d.RotateCounterClockWise(&test)
+	fmt.Printf("\n%v", test[0])
+	fmt.Printf("\n%v", test[1])
+	fmt.Printf("\n%v", test[2])
+	fmt.Printf("\n%v", test[3])
 }
