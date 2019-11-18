@@ -2,7 +2,6 @@ package binarytree
 
 import (
 	"math/rand"
-	"fmt"
 )
 
 type TreeNode struct {
